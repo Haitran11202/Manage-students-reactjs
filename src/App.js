@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import "./styles.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import InsertStudent from "./components/InsertStudent";
+import Table from "./components/Table";
+import { AppProvider } from "./Context";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <div className="App">
+                <Header />
+                <div className="app-wrapper">
+                    <AppProvider>
+                        <Routes>
+                            <Route path="/" element={<Table />} />
+                            <Route
+                                path="/insert/:id"
+                                element={<InsertStudent />}
+                            />
+                            <Route
+                                path="/insert/"
+                                element={<InsertStudent />}
+                            />
+                        </Routes>
+                    </AppProvider>
+                </div>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
