@@ -1,6 +1,11 @@
+body {
+    background-color: #f0f0f0;
+}
+/* 
 table {
     border: 1px solid #333;
     width: 100%;
+    border-collapse: collapse;
 }
 thead th {
     border: 1px solid #333;
@@ -8,13 +13,4 @@ thead th {
     background-color: red;
     color: #fff;
 }
-
-tr,
-td {
-    border: 1px solid #333;
-    padding: 10px;
-}
-.result {
-    border: 1px solid red;
-    padding: 10px;
-}
+*/

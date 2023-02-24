@@ -1,9 +1,22 @@
-.btn {
+.form-sub {
     padding: 10px;
-    width: 300px;
     display: flex;
     flex-direction: column;
 }
+.input-information {
+    padding-top: 20px;
+    box-shadow: 0 3rem 5rem -2rem rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+}
 .error-wrapper {
     display: flex;
+}
+.btn-wrapper {
+    display: flex;
+    width: 500px;
+    gap: 10px;
+}
+.gender-error {
+    color: rgb(199, 3, 3);
+    font-size: 14px;
 }

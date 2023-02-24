@@ -2,10 +2,14 @@ import { useContext } from "react";
 import { AppContext } from "../../Context";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDeleteLeft, faEdit } from "@fortawesome/free-solid-svg-icons";
+
 import "./styles.css";
 function Table() {
     const { students, setStudents } = useContext(AppContext);
     const [selectedStudents, setSelectedStudents] = useState([]);
+
     // Xử lý khi người dùng click vào check box
     const handleCheckBoxChange = (event, student) => {
         if (event.target.checked) {
@@ -46,73 +50,59 @@ function Table() {
         }
     };
     return (
-        <div className="table-wrapper">
-            <div class="result">
-                <table>
-                    <thead>
+        <div className="wrapper container-fluid">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Mã sinh viên</th>
+                        <th scope="col">Tên sinh viên</th>
+                        <th scope="col">Ngày sinh</th>
+                        <th scope="col">Giới tính</th>
+                        <th scope="col">Khoa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {students.map((student, index) => (
                         <tr>
-                            <th></th>
-                            <th>Mã sinh viên</th>
-                            <th>Tên sinh viên</th>
-                            <th>Ngày sinh</th>
-                            <th>Giới tính</th>
-                            <th>Khoa</th>
-                            <th colSpan="2">Thao tác</th>
+                            <td>{index + 1}</td>
+                            <td>{student.MaSV}</td>
+                            <td>{student.TenSV}</td>
+                            <td>{student.NgaySinh}</td>
+                            <td>{student.GioiTinh}</td>
+                            <td>{student.MaKhoa}</td>
+                            <td className="st-control">
+                                <Link
+                                    to={`/insert/${student.MaSV}`}
+                                    className="control-btn edit"
+                                >
+                                    Sửa{" "}
+                                    <span>
+                                        <FontAwesomeIcon icon={faEdit} />
+                                    </span>
+                                </Link>
+                                <Link
+                                    className="control-btn delete"
+                                    onClick={() => handleDelete(student.MaSV)}
+                                >
+                                    Xoá{" "}
+                                    <span>
+                                        <FontAwesomeIcon icon={faDeleteLeft} />
+                                    </span>
+                                </Link>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {students.map((student, index) => {
-                            return (
-                                <tr>
-                                    <td>
-                                        <input
-                                            type="checkbox"
-                                            name=""
-                                            id=""
-                                            onChange={(event) =>
-                                                handleCheckBoxChange(
-                                                    event,
-                                                    student
-                                                )
-                                            }
-                                        />
-                                    </td>
-                                    <td>{student.MaSV}</td>
-                                    <td>{student.TenSV}</td>
-                                    <td>{student.NgaySinh}</td>
-                                    <td>{student.GioiTinh}</td>
-                                    <td>{student.MaKhoa}</td>
-                                    <td>
-                                        <Link
-                                            to={`/insert/${student.MaSV}`}
-                                            className="edit-btn"
-                                        >
-                                            Sửa
-                                        </Link>
-                                        <button
-                                            className="delete-btn"
-                                            onClick={() =>
-                                                handleDelete(student.MaSV)
-                                            }
-                                        >
-                                            Xoá
-                                        </button>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
-            </div>
-            <div>
-                <Link to="/insert">Thêm sinh viên</Link>
-            </div>
-            <div>
-                {selectedStudents.length === 0 ? (
-                    <></>
-                ) : (
-                    <button onClick={handleDeleteClick}>Xóa</button>
-                )}
+                    ))}
+                </tbody>
+            </table>
+            <div className="control">
+                <div>
+                    {selectedStudents.length === 0 ? (
+                        <></>
+                    ) : (
+                        <button onClick={handleDeleteClick}>Xóa</button>
+                    )}
+                </div>
             </div>
         </div>
     );

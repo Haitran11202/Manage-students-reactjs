@@ -8,12 +8,13 @@ import { AppProvider } from "./Context";
 function App() {
     return (
         <Router>
-            <div className="App">
-                <Header />
-                <div className="app-wrapper">
-                    <AppProvider>
+            <AppProvider>
+                <div className="App">
+                    <Header />
+                    <div className="app-wrapper">
                         <Routes>
                             <Route path="/" element={<Table />} />
+                            <Route path="/:search" element={<Table />} />
                             <Route
                                 path="/insert/:id"
                                 element={<InsertStudent />}
@@ -23,9 +24,9 @@ function App() {
                                 element={<InsertStudent />}
                             />
                         </Routes>
-                    </AppProvider>
+                    </div>
                 </div>
-            </div>
+            </AppProvider>
         </Router>
     );
 }
