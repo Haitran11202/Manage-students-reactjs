@@ -37,8 +37,6 @@ function InsertStudent() {
             }
         }
     }, [id, students]);
-    console.log("Add Mode");
-    console.log(error);
     const handleAddNew = () => {};
     const validateInput = () => {
         const errors = {};

@@ -2,10 +2,11 @@ import { useContext } from "react";
 import { AppContext } from "../../Context";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import "./styles.css";
 function Table() {
     const { students, setStudents } = useContext(AppContext);
     const [selectedStudents, setSelectedStudents] = useState([]);
-    console.log(selectedStudents);
+    // Xử lý khi người dùng click vào check box
     const handleCheckBoxChange = (event, student) => {
         if (event.target.checked) {
             setSelectedStudents([...selectedStudents, student]);
@@ -17,17 +18,35 @@ function Table() {
             );
         }
     };
+    // Xóa nhiều sinh viên cùng lúc
     const handleDeleteClick = () => {
-        const deletedStudents = students.filter(
-            (st) => !selectedStudents.includes(st)
+        const confirmlog = window.confirm(
+            "Bạn có chắc chắn muốn xóa các sinh viên này không:"
         );
+        if (confirmlog) {
+            const deletedStudents = students.filter(
+                (st) => !selectedStudents.includes(st)
+            );
 
-        localStorage.setItem("students", JSON.stringify(deletedStudents));
-        setStudents(deletedStudents);
+            localStorage.setItem("students", JSON.stringify(deletedStudents));
+            setStudents(deletedStudents);
+        } else {
+            return;
+        }
     };
-    console.log(selectedStudents);
+    //Xóa một sinh viên
+    const handleDelete = (maSv) => {
+        const confirmlog = window.confirm("Bạn muốn xóa sinh viên này không ?");
+        if (confirmlog) {
+            const deletedStudents = students.filter((st) => st.MaSV !== maSv);
+            localStorage.setItem("students", JSON.stringify(deletedStudents));
+            setStudents(deletedStudents);
+        } else {
+            return;
+        }
+    };
     return (
-        <div>
+        <div className="table-wrapper">
             <div class="result">
                 <table>
                     <thead>
@@ -70,7 +89,12 @@ function Table() {
                                         >
                                             Sửa
                                         </Link>
-                                        <button className="delete-btn">
+                                        <button
+                                            className="delete-btn"
+                                            onClick={() =>
+                                                handleDelete(student.MaSV)
+                                            }
+                                        >
                                             Xoá
                                         </button>
                                     </td>
