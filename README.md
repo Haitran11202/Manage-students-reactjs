@@ -68,3 +68,59 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+  <div className="wrapper container-fluid">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Mã sinh viên</th>
+                        <th scope="col">Tên sinh viên</th>
+                        <th scope="col">Ngày sinh</th>
+                        <th scope="col">Giới tính</th>
+                        <th scope="col">Khoa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {students.map((student, index) => (
+                        <tr>
+                            <td>{index}</td>
+                            <td>{student.MaSV}</td>
+                            <td>{student.TenSV}</td>
+                            <td>{student.NgaySinh}</td>
+                            <td>{student.GioiTinh}</td>
+                            <td>{student.MaKhoa}</td>
+                            <td>{student.MaKhoa}</td>
+                            <td>{student.MaKhoa}</td>
+                            
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            <div className="control">
+                <div>
+                    {selectedStudents.length === 0 ? (
+                        <></>
+                    ) : (
+                        <button onClick={handleDeleteClick}>Xóa</button>
+                    )}
+                </div>
+            </div>
+        </div>
+
+        <td className="st-control">
+                                    <Link
+                                        to={`/insert/${student.MaSV}`}
+                                        className=" "
+                                    >
+                                        Sửa
+                                    </Link>
+                                    <p
+                                        className=""
+                                        onClick={() =>
+                                            handleDelete(student.MaSV)
+                                        }
+                                    >
+                                        Xoá
+                                    </p>
+                                </td>
