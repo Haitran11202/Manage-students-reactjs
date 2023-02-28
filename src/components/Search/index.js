@@ -3,22 +3,29 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../Context";
 
 function Search() {
-    const { students, setStudents } = useContext(AppContext);
-    const [search, setSearch] = useState();
+    const { students, setStudents, search, setSearch } = useContext(AppContext);
+    const [defaultStudents, setDefaultStudents] = useState([]); //lưu lại danh sách sinh viên trước khi tìm
+
     const navigate = useNavigate();
     const handleSearchChange = (event) => {
         setSearch(event.target.value);
     };
     const handleSearching = () => {
-        const filteredStudents = students.filter((student) =>
-            student.TenSV.toLowerCase().includes(search.toLowerCase())
-        );
+        let filteredStudents = students.filter((student) => {
+            if (search) {
+                return student.TenSV.toLowerCase().includes(
+                    search.toLowerCase()
+                );
+            }
+        });
+        console.log(filteredStudents);
         if (filteredStudents.length > 0) {
             setStudents(filteredStudents);
+            setDefaultStudents(students);
         } else {
-            setStudents(students);
+            setStudents(defaultStudents);
+            navigate("/");
         }
-        navigate("/");
     };
     return (
         <div className="search-wrapper">

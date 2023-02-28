@@ -5,7 +5,9 @@ import Header from "./components/Header";
 import InsertStudent from "./components/InsertStudent";
 import Table from "./components/Table";
 import { AppProvider } from "./Context";
+import { useState } from "react";
 function App() {
+    // const [search, setSearch] = useState();
     return (
         <Router>
             <AppProvider>

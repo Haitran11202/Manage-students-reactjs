@@ -9,9 +9,9 @@ import "./styles.css";
 function Table() {
     const { students, setStudents } = useContext(AppContext);
     const [selectedStudents, setSelectedStudents] = useState([]);
-
     // Xử lý khi người dùng click vào check box
     const handleCheckBoxChange = (event, student) => {
+        console.log(student);
         if (event.target.checked) {
             setSelectedStudents([...selectedStudents, student]);
         } else {
@@ -49,12 +49,13 @@ function Table() {
             return;
         }
     };
+    console.log(selectedStudents);
     return (
         <div className="wrapper container-fluid">
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">STT</th>
+                        <th></th>
                         <th scope="col">Mã sinh viên</th>
                         <th scope="col">Tên sinh viên</th>
                         <th scope="col">Ngày sinh</th>
@@ -65,7 +66,15 @@ function Table() {
                 <tbody>
                     {students.map((student, index) => (
                         <tr>
-                            <td>{index + 1}</td>
+                            <td className="check-input">
+                                <input
+                                    checked={selectedStudents.includes(student)}
+                                    type="checkbox"
+                                    onChange={(event) =>
+                                        handleCheckBoxChange(event, student)
+                                    }
+                                />
+                            </td>
                             <td>{student.MaSV}</td>
                             <td>{student.TenSV}</td>
                             <td>{student.NgaySinh}</td>

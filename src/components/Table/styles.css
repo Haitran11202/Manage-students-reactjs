@@ -22,8 +22,11 @@
 .delete {
     color: red;
 }
-td {
-    width: 250px;
+.check-input {
+    width: 10px;
+}
+.check-input input {
+    width: 100%;
 }
 .wrapper {
     box-shadow: 0 3rem 5rem -2rem rgba(0, 0, 0, 0.2);

@@ -36,7 +36,13 @@ function InsertStudent() {
             }
         }
     }, [id, students]);
-    const handleAddNew = () => {};
+    const handleAddNew = () => {
+        setStId("");
+        setName("");
+        setDob("");
+        setGender("");
+        setMajors("");
+    };
     const validateInput = () => {
         const errors = {};
         console.log(error);
@@ -239,14 +245,14 @@ function InsertStudent() {
                             >
                                 Cập Nhật
                             </button>
-                            <button
+                            {/* <button
                                 className="btn btn-secondary"
                                 id="btn-new"
                                 type="button"
                                 onClick={handleAddNew}
                             >
                                 Thêm mới
-                            </button>
+                            </button> */}
                         </div>
                     </div>
                 </div>
